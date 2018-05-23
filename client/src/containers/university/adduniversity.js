@@ -51,7 +51,7 @@ class AddUniversity extends React.Component {
 
   onFilesChange (file) {
     var self = this
-    if (files.length > 0) {
+    if (file.length > 0) {
       this.setState({
         file: file,
         fileErrors: []
