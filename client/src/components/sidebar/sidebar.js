@@ -14,7 +14,7 @@ class Sidebar extends React.Component {
         <button className='m-aside-left-close  m-aside-left-close--skin-dark' id='m_aside_left_close_btn'>
           <i className='la la-close' />
         </button>
-        <div style={{height: '-webkit-fill-available'}} id='m_aside_left' className='m-grid__item	m-aside-left  m-aside-left--skin-dark'>
+        <div style={{height: '200%'}} id='m_aside_left' className='m-grid__item	m-aside-left  m-aside-left--skin-dark'>
           <div id='m_ver_menu' className='m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark' data-menu-vertical='true' data-menu-scrollable='false' data-menu-dropdown-timeout='500' >
             <ul className='m-menu__nav  m-menu__nav--dropdown-submenu-arrow' >
               <li className='m-menu__item  m-menu__item' aria-haspopup='true' >

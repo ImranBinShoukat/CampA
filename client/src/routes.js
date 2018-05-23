@@ -6,6 +6,7 @@ import Dashboard from './containers/dashboard/dashboard';
 import ForgotPassword from './containers/login/forgotPassword';
 import University from './containers/university/university';
 import AddUniversity from './containers/university/adduniversity';
+import EditUniversity from './containers/university/edituniversity';
 import auth from './utility/auth.service';
 
 function requireAuth (nextState, replace) {
@@ -40,6 +41,7 @@ const routes = (
         <Route path="/forgotPassword" component={ForgotPassword} />
         <Route path="/universities" component={University} onEnter={requireAuth} />
         <Route path="/addUniversity" component={AddUniversity} onEnter={requireAuth} />
+        <Route path="/editUniversity" component={EditUniversity} onEnter={requireAuth} />
      </Route>
 );
 
