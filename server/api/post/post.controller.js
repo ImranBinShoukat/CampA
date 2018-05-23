@@ -1,7 +1,7 @@
 /**
  * Created by imran on 27/01/2018.
  */
-'use strict'
+
 var Post = require('./post.model');
 var MySociety = require('../mysociety/mysociety.model');
 const logger = require('../../components/logger');

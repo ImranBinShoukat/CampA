@@ -1,7 +1,7 @@
 /**
  * Created by imran on 27/01/2018.
  */
-'use strict'
+
 var EventRegistrations = require('./eventregistrations.model');
 const logger = require('../../components/logger');
 const TAG = 'api/eventregistration/eventregistration.controller.js';

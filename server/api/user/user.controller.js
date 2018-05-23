@@ -1,7 +1,7 @@
 /**
  * Created by imran on 27/01/2018.
  */
-'use strict'
+
 var User = require('./Users.model');
 var Student = require('../students/students.model');
 var People = require('../people/people.model');
