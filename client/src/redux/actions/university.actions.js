@@ -6,7 +6,7 @@ export const API_URL = '/api'
 export function uploadFile (filedata, handleFunction) {
   return (dispatch) => {
     // eslint-disable-next-line no-undef
-    fetch(`${API_URL}/post/uploadFile`, {
+    fetch(`${API_URL}/posts/uploadFile`, {
       method: 'post',
       body: filedata,
       // eslint-disable-next-line no-undef
