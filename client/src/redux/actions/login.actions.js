@@ -23,14 +23,12 @@ export function login (data) {
     'content-type': 'application/json'
   }
   return (dispatch) => {
-    console.log('calling auth/local')
     fetch(`/auth/local`, {
       method: 'post',
       body: JSON.stringify(data),
       // eslint-disable-next-line no-undef
       headers: headers1
     }).then((res) => res.json()).then((res) => res).then((res) => {
-      console.log('token', res.token)
       if (res.token) {
         auth.putCookie(res.token)
         dispatch(Success())

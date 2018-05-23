@@ -227,7 +227,7 @@ class Header extends React.Component {
 																</li>
 																<li className='m-nav__separator m-nav__separator--fit' />
 																<li className='m-nav__item'>
-																	<a onClick={auth.logout()} href='/' className='btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder'>
+																	<a onClick={() => { console.log('logout called'); auth.logout(); }} href='/' className='btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder'>
 																		Logout
 																	</a>
 																</li>

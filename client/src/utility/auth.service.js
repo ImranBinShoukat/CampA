@@ -15,6 +15,7 @@ const auth = {
   },
 
   putCookie (val) {
+    console.log('putting cookie')
     cookie.save('token', val)
   },
 
