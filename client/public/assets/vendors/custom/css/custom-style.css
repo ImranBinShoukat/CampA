@@ -1,0 +1,214 @@
+.sequencePopover {
+  margin-top: 35px;
+}
+
+span.select2.select2-container.select2-container--default {
+  width: 200px !important
+}
+.select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
+  min-width: 150px;
+  word-break: break-all;
+  overflow: hidden;
+  white-space: normal;
+}
+input.select2-search__field {
+  width: 300px !important
+}
+.pagination {
+  margin: 10px 0;
+  padding-left: 0;
+}
+.pagination>li {
+    display: inline;
+}
+.pagination-lg>li>a, .pagination-lg>li>span {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33333;
+}
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    line-height: 1.42857;
+    text-decoration: none;
+    color: #337ab7;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-left: -1px;
+    cursor: pointer;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #337ab7;
+    cursor: default;
+  }
+  .pagination>li>a:hover {
+    background-color: #bac3d0
+  }
+  .btnListDetail:hover {
+    color: white !important
+  }
+
+  .guidelines-link {
+    display: block;
+    text-decoration: none !important;
+    height: 100%;
+    width: 100%
+  }
+ .panel-heading.guidelines-heading:hover{
+    background-color:#ebedf2;
+  }
+  .panel-heading.dashboard-heading:hover{
+     background-color:#ebedf2 !important;
+   }
+   .panel-heading.dashboard-heading{
+      background-color:white !important;
+    }
+  .linkMessageTypes:hover {
+    text-decoration: underline !important;
+  }
+.nameOptions:hover {
+  background-color:#ebedf2;
+  cursor: pointer;
+}
+.m-messenger__form-tools.pull-right.messengerTools {
+  background-color: #f4f5f8
+}
+i.greetingMessage.fa.fa-user:hover {
+  filter: brightness(50%);
+}
+i.greetingMessage.fa.fa-smile-o:hover {
+  filter: brightness(50%);
+}
+.m-widget4__info.previewInfo {
+    padding-left: 0px !important;
+}
+.msgPreview {
+  background: #fff;
+  padding: 8px 10px 0px 30px;
+  text-align: left;
+}
+.msgPreviewLeft {
+  float: left;
+  width: 33px;
+  padding-left: 7px;
+}
+.msgPreviewRight {
+  margin-left: 40px;
+  line-height: 16px;
+  padding-right: 50px;
+  font-size: 13px;
+  margin-top: 3px;
+}
+.footerPreview {
+  border-top: 1px solid #c8c7cc;
+  padding-top: 6px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  padding-bottom: 6px;
+}
+.buttonPreview {
+  height: 34px;
+  width: 300px;
+  line-height: 33px;
+  background: #007aff;
+  border: 1px solid #007aff;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 0 10px;
+  margin: 0;
+  position: relative;
+  font-size: 14px;
+  outline: 0;
+}
+.footerInfo {
+  color: #b5b5b5;
+  text-align: center;
+  font-size: 11px;
+  margin-bottom: 6px;
+  padding: 0 15px;
+}
+a.broadcastTabs.active {
+  color: #555;
+  background-color: #fff !important;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+  cursor: default;
+}
+.tagList {
+  display: inline-block !important
+}
+.tagLabel {
+  position: relative;
+  display: inline-block;
+  margin: 5px 5px 0 0;
+  padding: 0px 5px;
+  background-color: #f4f5f8;
+  border: 1px solid #c7e4ff;
+  border-radius: 13px;
+  cursor: default;
+  color: #3c4858;
+  text-align: left;
+  font-size: 14px;
+  line-height: 20px;
+  width: '200px'
+}
+.tagName {
+  margin-top: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.popover.show.buttonPopover {
+  left: -110px !important;
+  height: auto !important
+}
+.buttonPopover > .popover-inner {
+  height: auto !important;
+}
+.popover.show.subscriberPopover {
+  height: auto !important
+}
+.subscriberPopover > .popover-inner {
+  height: auto !important;
+}
+.popover.show.liveChatPopover {
+  height: auto !important
+}
+.liveChatPopover > .popover-inner {
+  height: auto !important;
+}
+.popover.show.greetingPopover {
+  height: auto !important
+}
+.greetingPopover > .popover-inner {
+  height: auto !important;
+}
+.widgetButton {
+  color: #45ccb1 !important;
+  background-color: white !important;
+  border-color: #45ccb1 !important;
+}
+.widgetButton:hover {
+  color: #45ccb1 !important;
+  background-color: #f5f5f5 !important;
+  border-color: #45ccb1 !important;
+}
+.addLink {
+  color: white !important;
+}
+.addLink:hover {
+  color: white !important;
+}
+.attachmentDiv {
+  border: 2px dashed lightgray;
+}
+.postIcons:hover {
+  color: blue !important
+}
