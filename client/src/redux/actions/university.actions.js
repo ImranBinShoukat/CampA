@@ -18,3 +18,18 @@ export function uploadFile (filedata, handleFunction) {
     })
   }
 }
+
+export function showUniversities(data) {
+  return {
+    type: ActionTypes.SHOW_UNIVERSITIES,
+    data
+  };
+}
+
+export function getUniversities () {
+  return (dispatch) => {
+    callApi('universities').then(res => {
+      dispatch(showUniversities(res.payload))
+    })
+  }
+}

@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Header from '../../components/header/header'
 import Sidebar from '../../components/sidebar/sidebar'
+import { getUniversities } from '../../redux/actions/university.actions'
 
 class University extends React.Component {
   constructor (props, context) {
@@ -19,6 +20,7 @@ class University extends React.Component {
       searchValue: '',
       deleteid: ''
     }
+    props.getUniversities()
     this.searchUniversity = this.searchUniversity.bind(this)
     this.onFilter = this.onFilter.bind(this)
     this.gotoEditUniversity = this.gotoEditUniversity.bind(this)
@@ -45,22 +47,22 @@ class University extends React.Component {
     if (event.target.value !== '') {
       if (this.state.filterValue !== '') {
         for (let i = 0; i < this.props.universities.length; i++) {
-          if (this.props.universities[i].name.lowercase().includes(event.target.value) && this.props.universities[i].sector === this.state.filterValue) {
+          if (this.props.universities[i].name.toLowerCase().includes(event.target.value) && this.props.universities[i].sector === this.state.filterValue) {
             filtered.push(this.props.universities[i])
           }
         }
       } else {
-        for (let i = 0; i < this.props.universities.length; i++) {
-          if (this.props.universities[i].name.lowercase().includes(event.target.value)) {
-            filtered.push(this.props.universities[i])
+        for (let j = 0; j < this.props.universities.length; j++) {
+          if (this.props.universities[j].name.toLowerCase().includes(event.target.value)) {
+            filtered.push(this.props.universities[j])
           }
         }
       }
     } else {
       if (this.state.filterValue !== '') {
-        for (let i = 0; i < this.props.universities.length; i++) {
-          if (this.props.universities[i].sector === this.state.filterValue) {
-            filtered.push(this.props.universities[i])
+        for (let k = 0; k < this.props.universities.length; k++) {
+          if (this.props.universities[k].sector === this.state.filterValue) {
+            filtered.push(this.props.universities[k])
           }
         }
       } else {
@@ -75,23 +77,23 @@ class University extends React.Component {
     var filtered = []
     if (e.target.value !== '') {
       if (this.state.searchValue !== '') {
-        for (let i = 0; i < this.props.universities.length; i++) {
-          if (this.props.universities[i].name.lowercase().includes(this.state.searchValue) && this.props.universities[i].sector === e.target.value) {
-            filtered.push(this.props.universities[i])
+        for (let a = 0; a < this.props.universities.length; a++) {
+          if (this.props.universities[a].name.toLowerCase().includes(this.state.searchValue) && this.props.universities[a].sector === e.target.value) {
+            filtered.push(this.props.universities[a])
           }
         }
       } else {
-        for (let i = 0; i < this.props.universities.length; i++) {
-          if (this.props.universities[i].sector === e.target.value) {
-            filtered.push(this.props.universities[i])
+        for (let b = 0; b < this.props.universities.length; b++) {
+          if (this.props.universities[b].sector === e.target.value) {
+            filtered.push(this.props.universities[b])
           }
         }
       }
     } else {
       if (this.state.searchValue !== '') {
-        for (let i = 0; i < this.props.universities.length; i++) {
-          if (this.props.universities[i].name.lowercase().includes(this.state.searchValue)) {
-            filtered.push(this.props.universities[i])
+        for (let c = 0; c < this.props.universities.length; c++) {
+          if (this.props.universities[c].name.toLowerCase().includes(this.state.searchValue)) {
+            filtered.push(this.props.universities[c])
           }
         }
       } else {
@@ -311,6 +313,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return bindActionCreators({
+    getUniversities
   },
     dispatch)
 }

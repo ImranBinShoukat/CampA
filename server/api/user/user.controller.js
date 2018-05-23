@@ -97,6 +97,7 @@ exports.updateUser = function (req, res) {
           }
 
           user.username = req.body.username
+          user.role = req.body.role
           user.updated_by = req.body.updatedBy
           user.updated_at = Date.now()
 
@@ -178,6 +179,7 @@ exports.updateUser = function (req, res) {
           }
 
           user.username = req.body.username
+          user.role = req.body.role
           user.updated_by = req.body.updatedBy
           user.updated_at = Date.now()
 
@@ -259,6 +261,7 @@ exports.addUser = function (req, res) {
           student_id: savedStudent._id,
           university_id: req.body.universityId,
           username: req.body.username,
+          role: req.body.role,
           password: req.body.password,
           created_by: req.body.created_by
         }
@@ -358,6 +361,7 @@ exports.addUser = function (req, res) {
           people_id: savedPeople._id,
           university_id: req.body.universityId,
           username: req.body.username,
+          role: req.body.role,
           password: req.body.password,
           created_by: req.body.created_by
         }

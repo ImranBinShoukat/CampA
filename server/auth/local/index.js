@@ -25,7 +25,6 @@ router.post('/', function (req, res, next) {
     passport.authenticate('local', function (err, user, info) {
       let error = err || info
       if (error){
-        console.log('passport error', error)
         return res.status(401).json(error)
       }
       if (!user) {
@@ -33,7 +32,7 @@ router.post('/', function (req, res, next) {
       }
 
       let token = auth.signToken(user._id)
-      res.json({token: token, user: user})
+      res.json({token: token})
       if (user.facebookInfo) {
         auth.fetchPages(`https://graph.facebook.com/v2.10/${
           user.facebookInfo.fbId}/accounts?access_token=${

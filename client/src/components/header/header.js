@@ -10,6 +10,7 @@ import auth from '../../utility/auth.service'
 
 class Header extends React.Component {
   render() {
+    console.log(this.props.userdetails)
     return (
       <header className='m-grid__item    m-header'  data-minimize-offset='200' data-minimize-mobile-offset='200' >
         <div className='m-container m-container--fluid m-container--full-height'>
@@ -164,10 +165,10 @@ class Header extends React.Component {
 										<li className='m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light' data-dropdown-toggle='click'>
 											<a href='' className='m-nav__link m-dropdown__toggle'>
                         <span className='m-nav__link-text'>
-                          Imran Shoukat
+                          { this.props.userdetails.role === 'student' ? this.props.userdetails.student_id.first_name + ' ' + this.props.userdetails.student_id.last_name : this.props.userdetails.people_id.first_name + ' ' + this.props.userdetails.people_id.last_name }
                         </span>
 												<span className='m-topbar__userpic'>
-													<img src='assets/app/media/img/users/user4.jpg' className='m--img-rounded m--marginless m--img-centered' alt='' />
+													<img src={this.props.userdetails.role === 'student' && this.props.userdetails.student_id.profile_pic !== 'none' ? this.props.userdetails.student_id.profile_pic : this.props.userdetails.people_id.profile_pic !== 'none' ? this.props.userdetails.people_id.profile_pic : 'icons/users.jpg'} className='m--img-rounded m--marginless m--img-centered' alt='' />
 												</span>
 											</a>
 											<div className='m-dropdown__wrapper'>
@@ -176,14 +177,14 @@ class Header extends React.Component {
 													<div className='m-dropdown__header m--align-center' style={{background: 'url(assets/app/media/img/misc/user_profile_bg.jpg)', backgroundSize: 'cover'}} >
 														<div className='m-card-user m-card-user--skin-dark'>
 															<div className='m-card-user__pic'>
-																<img src='assets/app/media/img/users/user4.jpg' className='m--img-rounded m--marginless' alt='' />
+																<img src={this.props.userdetails.role === 'student' && this.props.userdetails.student_id.profile_pic !== 'none' ? this.props.userdetails.student_id.profile_pic : this.props.userdetails.people_id.profile_pic !== 'none' ? this.props.userdetails.people_id.profile_pic : 'icons/users.jpg'} className='m--img-rounded m--marginless' alt='' />
 															</div>
 															<div className='m-card-user__details'>
 																<span className='m-card-user__name m--font-weight-500'>
-																	Imran Shoukat
+																	{ this.props.userdetails.role === 'student' ? this.props.userdetails.student_id.first_name + ' ' + this.props.userdetails.student_id.last_name : this.props.userdetails.people_id.first_name + ' ' + this.props.userdetails.people_id.last_name }
 																</span>
 																<a href='' className='m-card-user__email m--font-weight-300 m-link'>
-																	imran.shoukat@khi.iba.edu.pk
+																	{this.props.userdetails.role === 'student' ? this.props.userdetails.student_id.email : this.props.userdetails.people_id.email}
 																</a>
 															</div>
 														</div>
@@ -250,7 +251,7 @@ class Header extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    userdetails: (state.loginInfo.userdetails)
+    userdetails: (state.basicInfo.userdetails)
   }
 }
 

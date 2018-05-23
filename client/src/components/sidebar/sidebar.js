@@ -6,7 +6,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Header from '../../components/header/header'
 
 class Sidebar extends React.Component {
   render() {
@@ -30,30 +29,36 @@ class Sidebar extends React.Component {
                   </span>
                 </a>
               </li>
-              <li className='m-menu__item  m-menu__item' aria-haspopup='true' >
-                <Link to='/universities' className='m-menu__link' >
-                  <i className='m-menu__link-icon la la-university' />
-                  <span className='m-menu__link-title'>
-                    <span className='m-menu__link-wrap'>
-                      <span className='m-menu__link-text'>
-                        Universities
+              {
+                this.props.userdetails && this.props.userdetails.role === 'super user' &&
+                <li className='m-menu__item  m-menu__item' aria-haspopup='true' >
+                  <Link to='/universities' className='m-menu__link' >
+                    <i className='m-menu__link-icon la la-university' />
+                    <span className='m-menu__link-title'>
+                      <span className='m-menu__link-wrap'>
+                        <span className='m-menu__link-text'>
+                          Universities
+                        </span>
                       </span>
                     </span>
-                  </span>
-                </Link>
-              </li>
-              <li className='m-menu__item  m-menu__item' aria-haspopup='true' >
-                <a className='m-menu__link' >
-                  <i className='m-menu__link-icon la la-users' />
-                  <span className='m-menu__link-title'>
-                    <span className='m-menu__link-wrap'>
-                      <span className='m-menu__link-text'>
-                        Users
+                  </Link>
+                </li>
+              }
+              {
+                this.props.userdetails && this.props.userdetails.role === 'super user' &&
+                <li className='m-menu__item  m-menu__item' aria-haspopup='true' >
+                  <a className='m-menu__link' >
+                    <i className='m-menu__link-icon la la-users' />
+                    <span className='m-menu__link-title'>
+                      <span className='m-menu__link-wrap'>
+                        <span className='m-menu__link-text'>
+                          Users
+                        </span>
                       </span>
                     </span>
-                  </span>
-                </a>
-              </li>
+                  </a>
+                </li>
+              }
               <li className='m-menu__item  m-menu__item' aria-haspopup='true' >
                 <a className='m-menu__link' >
                   <i className='m-menu__link-icon la la-cog' />
@@ -76,6 +81,7 @@ class Sidebar extends React.Component {
 
 function mapStateToProps (state) {
   return {
+    userdetails: (state.basicInfo.userdetails)
   }
 }
 

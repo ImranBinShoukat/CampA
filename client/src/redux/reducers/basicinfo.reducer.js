@@ -17,6 +17,11 @@ export function basicInfo(state = initialState, action) {
         browserVersion: action.data
       });
 
+    case ActionTypes.SHOW_USER_DETAILS:
+      return Object.assign({}, state, {
+        userdetails: action.data
+      });
+
     default:
       return state;
   }

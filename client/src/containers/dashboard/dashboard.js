@@ -23,11 +23,22 @@ class Dashboard extends React.Component {
   render() {
     return (
 			<div>
-				<Header />
-				<div style={{backgroundColor: '#f2f3f8'}} className='m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body'>
-					<Sidebar />
-					<div>Dashboard</div>
-				</div>
+				{
+					this.props.userdetails &&
+					<div>
+						<Header />
+						<div className='m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body'>
+							<Sidebar />
+							{
+								this.props.userdetails.role === 'super user'
+								? <div>Super User Dashboard</div>
+								: this.props.userdetails.role === 'administrator'
+								? <div>University Administrator Dashboard</div>
+								: <div>Office Bearer Dashboard</div>
+							}
+						</div>
+					</div>
+				}
 			</div>
     );
   }
@@ -35,7 +46,7 @@ class Dashboard extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    userdetails: (state.loginInfo.userdetails)
+    userdetails: (state.basicInfo.userdetails)
   }
 }
 

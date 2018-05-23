@@ -15,10 +15,17 @@ export function setBrowserVersion(data) {
   };
 }
 
+export function showUserdetails(data) {
+  return {
+    type: ActionTypes.SHOW_USER_DETAILS,
+    data
+  };
+}
+
 export function getuserdetails () {
   return (dispatch) => {
     callApi('users').then(res => {
-      console.log('userdetails', res.payload)
+      dispatch(showUserdetails(res.payload))
     })
   }
 }
