@@ -8,8 +8,7 @@
 module.exports = {
   // MySQL connection options
   mongo: {
-    uri:    process.env.MONGO_URI ||
-    'mongodb://root:a345rq98efw@localhost/campa'
+    uri:    uri: process.env.MONGO_URI || 'mongodb://localhost:27017/campa-prod'
   },
   seedDB: false
 };
