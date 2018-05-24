@@ -45,7 +45,7 @@ class Sidebar extends React.Component {
                 </li>
               }
               {
-                this.props.userdetails && this.props.userdetails.role === 'super user' &&
+                this.props.userdetails && (this.props.userdetails.role === 'super user' || this.props.userdetails.role === 'administrator') &&
                 <li className='m-menu__item  m-menu__item' aria-haspopup='true' >
                   <Link to='/users' className='m-menu__link' >
                     <i className='m-menu__link-icon la la-users' />
