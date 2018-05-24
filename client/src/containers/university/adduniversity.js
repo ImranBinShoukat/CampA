@@ -3,13 +3,13 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Header from '../../components/header/header'
 import Sidebar from '../../components/sidebar/sidebar'
 import Files from 'react-files'
-import { uploadFile } from '../../redux/actions/university.actions'
+import { uploadFile, addUniversity } from '../../redux/actions/university.actions'
 
 class AddUniversity extends React.Component {
   constructor (props, context) {
@@ -28,6 +28,7 @@ class AddUniversity extends React.Component {
     this.onFilesChange = this.onFilesChange.bind(this)
     this.onFilesError = this.onFilesError.bind(this)
     this.removeFile = this.removeFile.bind(this)
+    this.addUniversity = this.addUniversity.bind(this)
   }
 
   changeName (e) {
@@ -49,9 +50,24 @@ class AddUniversity extends React.Component {
     document.title = 'CampA | Add University'
   }
 
-  onFilesChange (file) {
+  addUniversity () {
+    console.log('addUniversity')
+    const data = {
+      name: this.state.name,
+      address: this.state.address,
+      sector: this.state.sector,
+      logoUrl: 'none'
+    }
+    this.props.addUniversity(data)
+    browserHistory.push({
+      pathname: `/universities`
+    })
+  }
+
+  onFilesChange (files) {
     var self = this
-    if (file.length > 0) {
+    if (files.length > 0) {
+      var file = files[0]
       this.setState({
         file: file,
         fileErrors: []
@@ -126,46 +142,10 @@ class AddUniversity extends React.Component {
                           </select>
                         </div>
                       </div>
-                      <br />
-                      <div className='col-lg-12 col-md-12 col-sm-12'>
-                        {
-                          this.state.file !== ''
-                          ? <div className='m-dropzone dropzone dz-clickable'
-                            id='m-dropzone-one'>
-                            <div style={{marginTop: '20px'}}>
-                              <span onClick={this.removeFile} className='fa-stack'>
-                                <i style={{color: '#ccc', cursor: 'pointer'}} className='fa fa-times fa-stack-1x fa-inverse' />
-                              </span>
-                              <h4><i style={{fontSize: '20px'}} className='fa fa-file-text-o' /> {this.state.file[0].name}</h4>
-                            </div>
-                            <span className='m-form__help'>
-                              {
-                                this.state.fileErrors.map(
-                                m => <span style={{color: 'red'}}>{m.errorMsg}</span>
-                                )
-                              }
-                            </span>
-                          </div>
-                          : <div className='m-dropzone dropzone dz-clickable'
-                            id='m-dropzone-one'>
-                            <Files
-                              className='file-upload-area'
-                              onChange={this.onFilesChange}
-                              onError={this.onFilesError}
-                              accepts={['image/*']}
-                              multiple={false}
-                              maxFileSize={25000000}
-                              minFileSize={0}
-                              clickable>
-                              <button style={{cursor: 'pointer', marginTop: '30px'}} className='btn m-btn--pill btn-success'>Upload Logo</button>
-                            </Files>
-                          </div>
-                        }
-                      </div>
                     </div>
                     <div className='m-portlet__foot m-portlet__foot--fit' style={{'overflow': 'auto'}}>
                       <div className='m-form__actions' style={{'float': 'right', 'marginTop': '25px', 'marginRight': '20px', 'marginBottom': '25px'}}>
-                        <button className='btn btn-primary'>
+                        <button onClick={this.addUniversity} className='btn btn-primary'>
                           Add
                         </button>
                         <Link
@@ -193,7 +173,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return bindActionCreators({
-    uploadFile
+    uploadFile,
+    addUniversity
   },
     dispatch)
 }

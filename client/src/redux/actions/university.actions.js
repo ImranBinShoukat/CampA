@@ -4,6 +4,7 @@ import auth from '../../utility/auth.service'
 export const API_URL = '/api'
 
 export function uploadFile (filedata, handleFunction) {
+  console.log(filedata)
   return (dispatch) => {
     // eslint-disable-next-line no-undef
     fetch(`${API_URL}/posts/uploadFile`, {
@@ -33,6 +34,30 @@ export function getUniversities () {
   return (dispatch) => {
     callApi('universities').then(res => {
       dispatch(showUniversities(res.payload))
+    })
+  }
+}
+
+export function deleteUniversity (data) {
+  return (dispatch) => {
+    callApi('universities/delete', 'delete', data).then(res => {
+      dispatch(getUniversities())
+    })
+  }
+}
+
+export function addUniversity (data) {
+  return (dispatch) => {
+    callApi('universities/add', 'post', data).then(res => {
+      dispatch(getUniversities())
+    })
+  }
+}
+
+export function editUniversity (data) {
+  return (dispatch) => {
+    callApi('universities/update', 'post', data).then(res => {
+      dispatch(getUniversities())
     })
   }
 }

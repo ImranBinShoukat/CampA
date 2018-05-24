@@ -8,7 +8,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Header from '../../components/header/header'
 import Sidebar from '../../components/sidebar/sidebar'
-import { getUniversities } from '../../redux/actions/university.actions'
+import { getUniversities, deleteUniversity } from '../../redux/actions/university.actions'
+import { ModalContainer, ModalDialog } from 'react-modal-dialog'
 
 class University extends React.Component {
   constructor (props, context) {
@@ -170,6 +171,7 @@ class University extends React.Component {
                                   <button style={{float: 'right'}}
                                     className='btn btn-primary btn-sm'
                                     onClick={() => {
+                                      this.props.deleteUniversity({universityId: this.state.deleteid})
                                       this.closeDialog()
                                     }}>Delete
                                   </button>
@@ -210,10 +212,6 @@ class University extends React.Component {
                                   <thead className='m-datatable__head'>
                                     <tr className='m-datatable__row'
                                       style={{height: '53px'}}>
-                                      <th data-field='logo'
-                                        className='m-datatable__cell--center m-datatable__cell m-datatable__cell--sort'>
-                                        <span style={{width: '100px'}}>Logo</span>
-                                      </th>
                                       <th data-field='name'
                                         className='m-datatable__cell--center m-datatable__cell m-datatable__cell--sort'>
                                         <span style={{width: '100px'}}>Name</span>
@@ -238,15 +236,6 @@ class University extends React.Component {
                                         <tr data-row={i}
                                           className={((i % 2) === 0) ? 'm-datatable__row' : 'm-datatable__row m-datatable__row--even'}
                                           style={{height: '55px'}} key={i}>
-                                          <td data-field='logo'
-                                            className='m-datatable__cell'>
-                                            <span style={{width: '100px'}}>
-                                              <img alt='logo'
-                                                src={university.logo_url}
-                                                className='m--img-rounded m--marginless m--img-centered' width='60' height='60'
-                                              />
-                                            </span>
-                                          </td>
                                           <td data-field='name'
                                             className='m-datatable__cell'>
                                             <span
@@ -263,7 +252,7 @@ class University extends React.Component {
                                           </td>
                                           <td data-field='sector' className='m-datatable__cell'>
                                             <span style={{width: '100px'}}>
-                                              {university.address}
+                                              {university.created_at}
                                             </span>
                                           </td>
                                           <td data-field='options'
@@ -313,7 +302,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return bindActionCreators({
-    getUniversities
+    getUniversities,
+    deleteUniversity
   },
     dispatch)
 }

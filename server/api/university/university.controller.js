@@ -85,11 +85,11 @@ exports.updateUniveristy = function (req, res) {
         .json({status: 'failed', description: 'Record not found'})
     }
 
-    autoposting.name = req.body.name
-    autoposting.address = req.body.address
-    autoposting.sector = req.body.sector
-    autoposting.logo_url = req.body.logo_url
-    autoposting.updated_at = Date.now()
+    university.name = req.body.name
+    university.address = req.body.address
+    university.sector = req.body.sector
+    university.logo_url = req.body.logo_url
+    university.updated_at = Date.now()
     university.save((err2) => {
       if (err2) {
         return res.status(500)

@@ -110,9 +110,10 @@ exports.upload = function (req, res) {
     dir + '/userfiles/' + serverPath,
     err => {
       if (err) {
+        console.log(err)
         return res.status(500).json({
           status: 'failed',
-          description: 'internal server error' + JSON.stringify(err)
+          description: 'internal server error' + err
         })
       }
       logger.serverLog(TAG,
