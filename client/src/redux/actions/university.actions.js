@@ -14,6 +14,9 @@ export function uploadFile (filedata, handleFunction) {
         'Authorization': `Bearer ${auth.getToken()}`
       })
     }).then((res) => res.json()).then((res) => res).then(res => {
+      if (res.description) {
+        console.log('error', res.description)
+      }
       handleFunction(res.payload)
     })
   }
