@@ -9,6 +9,9 @@ import { connect } from 'react-redux'
 import Header from '../../components/header/header'
 import Sidebar from '../../components/sidebar/sidebar'
 import { getuserdetails } from '../../redux/actions/basicinfo.actions'
+import AdministratorDashboard from './administratorDashboard'
+import SuperUserDashboard from './superuserDashboard'
+import OfficeBearerDashboard from './officebearerDashboard'
 
 class Dashboard extends React.Component {
 	constructor (props) {
@@ -29,13 +32,24 @@ class Dashboard extends React.Component {
 						<Header />
 						<div className='m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body'>
 							<Sidebar />
-							{
-								this.props.userdetails.role === 'super user'
-								? <div>Super User Dashboard</div>
-								: this.props.userdetails.role === 'administrator'
-								? <div>University Administrator Dashboard</div>
-								: <div>Office Bearer Dashboard</div>
-							}
+							<div className='m-grid__item m-grid__item--fluid m-wrapper'>
+        				<div className='m-subheader '>
+          				<div className='d-flex align-items-center'>
+            				<div className='mr-auto'>
+              				<h3 className='m-subheader__title'>Dashboard</h3>
+            				</div>
+          				</div>
+        				</div>
+        				<div className='m-content'>
+									{
+										this.props.userdetails.is_office_bearer
+										? <OfficeBearerDashboard />
+										: this.props.userdetails.role === 'super user'
+										? <SuperUserDashboard />
+										: <AdministratorDashboard />
+									}
+								</div>
+							</div>
 						</div>
 					</div>
 				}

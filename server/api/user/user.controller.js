@@ -130,6 +130,7 @@ exports.updateUser = function (req, res) {
     if (!_.has(req.body, 'CNIC')) parametersMissing = true
     if (!_.has(req.body, 'profilePic')) parametersMissing = true
     if (!_.has(req.body, 'updatedBy')) parametersMissing = true
+    if (!_.has(req.body, 'universityId')) parametersMissing = true
 
     if (parametersMissing) {
       return res.status(400)
@@ -159,6 +160,7 @@ exports.updateUser = function (req, res) {
       people.ext = req.body.ext
       people.CNIC = req.body.CNIC
       people.profile_pic = req.body.profilePic
+      people.university_id = req.body.universityId
 
       people.save((err, savedPeople) => {
         if (err) {
@@ -180,6 +182,7 @@ exports.updateUser = function (req, res) {
 
           user.username = req.body.username
           user.role = req.body.role
+          user.university_id = req.body.universityId
           user.updated_by = req.body.updatedBy
           user.updated_at = Date.now()
 

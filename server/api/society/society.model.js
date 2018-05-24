@@ -6,7 +6,7 @@ const societySchema = new Schema({
   university_id: { type: ObjectId, ref: 'universities' },
   name: String,
   description: String,
-  patron_id: { type: ObjectId, ref: 'societypatrons'},
+  patron_id: { type: ObjectId, ref: 'people'},
   office_bearers: [{ type: ObjectId, ref: 'users' }],
   created_by: { type: ObjectId, ref: 'users' },
   updated_by: { type: ObjectId, ref: 'users' },

@@ -8,69 +8,73 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Header from '../../components/header/header'
 import Sidebar from '../../components/sidebar/sidebar'
-import { getUniversities, deleteUniversity } from '../../redux/actions/university.actions'
+import { getUniversities } from '../../redux/actions/university.actions'
+import { getUsers, deleteUser } from '../../redux/actions/user.actions'
 import { ModalContainer, ModalDialog } from 'react-modal-dialog'
 
-class University extends React.Component {
+class User extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.state = {
-      universityData: [],
+      usersData: [],
       filterValue: '',
       showModal: false,
       searchValue: '',
       deleteid: ''
     }
+    props.getUsers()
     props.getUniversities()
-    this.searchUniversity = this.searchUniversity.bind(this)
+    this.searchUser = this.searchUser.bind(this)
     this.onFilter = this.onFilter.bind(this)
-    this.gotoEditUniversity = this.gotoEditUniversity.bind(this)
+    this.gotoEditUser = this.gotoEditUser.bind(this)
     this.showDialog = this.showDialog.bind(this)
     this.closeDialog = this.closeDialog.bind(this)
   }
 
-  gotoEditUniversity (university) {
+  gotoEditUser (user) {
     browserHistory.push({
-      pathname: `/editUniversity`,
-      state: university
+      pathname: `/editUser`,
+      state: user
     })
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.universities) {
-      this.setState({ universityData: nextProps.universities })
+    if (nextProps.users) {
+      this.setState({ usersData: nextProps.users })
     }
   }
 
-  searchUniversity (event) {
+  searchUser (event) {
     this.setState({searchValue: event.target.value})
     var filtered = []
     if (event.target.value !== '') {
       if (this.state.filterValue !== '') {
-        for (let i = 0; i < this.props.universities.length; i++) {
-          if (this.props.universities[i].name.toLowerCase().includes(event.target.value) && this.props.universities[i].sector === this.state.filterValue) {
-            filtered.push(this.props.universities[i])
+        for (let i = 0; i < this.props.users.length; i++) {
+          let name = this.props.users[i].people_id.first_name + ' ' + this.props.users[i].people_id.last_name
+          if (name.toLowerCase().includes(event.target.value) && this.props.users[i].university_id.name === this.state.filterValue) {
+            filtered.push(this.props.users[i])
           }
         }
       } else {
-        for (let j = 0; j < this.props.universities.length; j++) {
-          if (this.props.universities[j].name.toLowerCase().includes(event.target.value)) {
-            filtered.push(this.props.universities[j])
+        for (let j = 0; j < this.props.users.length; j++) {
+          let name = this.props.users[i].people_id.first_name + ' ' + this.props.users[i].people_id.last_name
+          if (name.toLowerCase().includes(event.target.value)) {
+            filtered.push(this.props.users[j])
           }
         }
       }
     } else {
       if (this.state.filterValue !== '') {
-        for (let k = 0; k < this.props.universities.length; k++) {
-          if (this.props.universities[k].sector === this.state.filterValue) {
-            filtered.push(this.props.universities[k])
+        for (let k = 0; k < this.props.users.length; k++) {
+          if (this.props.users[k].university_id.name === this.state.filterValue) {
+            filtered.push(this.props.users[k])
           }
         }
       } else {
-        filtered = this.props.universities
+        filtered = this.props.users
       }
     }
-    this.setState({ universityData: filtered })
+    this.setState({ usersData: filtered })
   }
 
   onFilter (e) {
@@ -78,30 +82,32 @@ class University extends React.Component {
     var filtered = []
     if (e.target.value !== '') {
       if (this.state.searchValue !== '') {
-        for (let a = 0; a < this.props.universities.length; a++) {
-          if (this.props.universities[a].name.toLowerCase().includes(this.state.searchValue) && this.props.universities[a].sector === e.target.value) {
-            filtered.push(this.props.universities[a])
+        for (let a = 0; a < this.props.users.length; a++) {
+          let name = this.props.users[i].people_id.first_name + ' ' + this.props.users[i].people_id.last_name
+          if (name.toLowerCase().includes(this.state.searchValue) && this.props.users[a].university_id.name === e.target.value) {
+            filtered.push(this.props.users[a])
           }
         }
       } else {
-        for (let b = 0; b < this.props.universities.length; b++) {
-          if (this.props.universities[b].sector === e.target.value) {
-            filtered.push(this.props.universities[b])
+        for (let b = 0; b < this.props.users.length; b++) {
+          if (this.props.users[b].university_id.name === e.target.value) {
+            filtered.push(this.props.users[b])
           }
         }
       }
     } else {
       if (this.state.searchValue !== '') {
         for (let c = 0; c < this.props.universities.length; c++) {
-          if (this.props.universities[c].name.toLowerCase().includes(this.state.searchValue)) {
-            filtered.push(this.props.universities[c])
+          let name = this.props.users[i].people_id.first_name + ' ' + this.props.users[i].people_id.last_name
+          if (name.toLowerCase().includes(this.state.searchValue)) {
+            filtered.push(this.props.users[c])
           }
         }
       } else {
-        filtered = this.props.universities
+        filtered = this.props.users
       }
     }
-    this.setState({universityData: filtered})
+    this.setState({usersData: filtered})
   }
 
   showDialog (id) {
@@ -114,7 +120,7 @@ class University extends React.Component {
   }
 
 	componentDidMount () {
-    document.title = 'CampA | University'
+    document.title = 'CampA | Users'
   }
 
   render() {
@@ -127,7 +133,7 @@ class University extends React.Component {
             <div className='m-subheader '>
               <div className='d-flex align-items-center'>
                 <div className='mr-auto'>
-                  <h3 className='m-subheader__title'>Manage Universities</h3>
+                  <h3 className='m-subheader__title'>Manage Users</h3>
                 </div>
               </div>
             </div>
@@ -139,17 +145,17 @@ class University extends React.Component {
                       <div className='m-portlet__head-caption'>
                         <div className='m-portlet__head-title'>
                           <h3 className='m-portlet__head-text'>
-                            Universities
+                            Users
                           </h3>
                         </div>
                       </div>
                       <div className='m-portlet__head-tools'>
-                        <Link to='/addUniversity' >
+                        <Link to='/addUser' >
                           <button className='btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill'>
                             <span>
                               <i className='la la-plus' />
                               <span>
-                                Add University
+                                Add User
                               </span>
                             </span>
                           </button>
@@ -167,11 +173,11 @@ class University extends React.Component {
                                 <ModalDialog style={{width: '500px'}}
                                   onClose={this.closeDialog}>
                                   <h3>Delete University</h3>
-                                  <p>Are you sure you want to delete this university?</p>
+                                  <p>Are you sure you want to delete this user?</p>
                                   <button style={{float: 'right'}}
                                     className='btn btn-primary btn-sm'
                                     onClick={() => {
-                                      this.props.deleteUniversity({universityId: this.state.deleteid})
+                                      this.props.deleteUser({userId: this.state.deleteid})
                                       this.closeDialog()
                                     }}>Delete
                                   </button>
@@ -181,11 +187,11 @@ class University extends React.Component {
                           </div>
                         </div>
                         {
-                          this.props.universities && this.props.universities.length > 0
+                          this.props.users && this.props.users.length > 0
                           ? <div className='col-lg-12 col-md-12 order-2 order-xl-1'>
                             <div className='form-group m-form__group row align-items-center'>
                               <div className='m-input-icon m-input-icon--left col-md-4 col-lg-4 col-xl-4' style={{marginLeft: '15px'}}>
-                                <input type='text' value={this.state.searchValue} placeholder='Search by name...' className='form-control m-input m-input--solid' onChange={(event) => { this.searchUniversity(event) }} />
+                                <input type='text' value={this.state.searchValue} placeholder='Search by name...' className='form-control m-input m-input--solid' onChange={(event) => { this.searchUser(event) }} />
                                 <span className='m-input-icon__icon m-input-icon__icon--left'>
                                   <span><i className='la la-search' /></span>
                                 </span>
@@ -193,15 +199,18 @@ class University extends React.Component {
                               <div className='col-md-4 col-lg-4 col-xl-4 row align-items-center' />
                               <div className='m-form__group m-form__group--inline col-md-4 col-lg-4 col-xl-4 row align-items-center'>
                                 <select className='custom-select' id='m_form_status' tabIndex='-98' value={this.state.filterValue} onChange={this.onFilter}>
-                                  <option value='' disabled>Filter by Sector...</option>
+                                  <option value='' disabled>Filter by University...</option>
                                   <option value=''>All</option>
-                                  <option value='public'>Public</option>
-                                  <option value='private'>Private</option>
+                                  {
+                                    this.props.universities && this.props.universities.map((university, i) => (
+                                      <option value={university.name}>{university.name}</option>
+                                    ))
+                                  }
                                 </select>
                               </div>
                             </div>
                             {
-                              this.state.universityData.length > 0
+                              this.state.usersData.length > 0
                               ? <div className='m_datatable m-datatable m-datatable--default m-datatable--loaded' id='local_data'>
                                 <table className='m-datatable__table'
                                   id='m-datatable--27866229129' style={{
@@ -216,17 +225,21 @@ class University extends React.Component {
                                         className='m-datatable__cell--center m-datatable__cell m-datatable__cell--sort'>
                                         <span style={{width: '100px'}}>Name</span>
                                       </th>
-                                      <th data-field='address'
+                                      <th data-field='username'
                                         className='m-datatable__cell--center m-datatable__cell m-datatable__cell--sort'>
-                                        <span style={{width: '100px'}}>Address</span>
+                                        <span style={{width: '100px'}}>Username</span>
+                                      </th>
+                                      <th data-field='email'
+                                        className='m-datatable__cell--center m-datatable__cell m-datatable__cell--sort'>
+                                        <span style={{width: '100px'}}>Email</span>
+                                      </th>
+                                      <th data-field='university'
+                                        className='m-datatable__cell--center m-datatable__cell m-datatable__cell--sort'>
+                                        <span style={{width: '100px'}}>University</span>
                                       </th>
                                       <th data-field='sector'
                                         className='m-datatable__cell--center m-datatable__cell m-datatable__cell--sort'>
-                                        <span style={{width: '100px'}}>Sector</span>
-                                      </th>
-                                      <th data-field='created_at'
-                                        className='m-datatable__cell--center m-datatable__cell m-datatable__cell--sort'>
-                                        <span style={{width: '100px'}}>Crated At</span>
+                                        <span style={{width: '100px'}}>Created At</span>
                                       </th>
                                       <th data-field='options'
                                         className='m-datatable__cell--center m-datatable__cell m-datatable__cell--sort'>
@@ -236,7 +249,7 @@ class University extends React.Component {
                                   </thead>
                                   <tbody className='m-datatable__body' style={{textAlign: 'center'}}>
                                     {
-                                      this.state.universityData.map((university, i) => (
+                                      this.state.usersData.map((user, i) => (
                                         <tr data-row={i}
                                           className={((i % 2) === 0) ? 'm-datatable__row' : 'm-datatable__row m-datatable__row--even'}
                                           style={{height: '55px'}} key={i}>
@@ -244,36 +257,45 @@ class University extends React.Component {
                                             className='m-datatable__cell'>
                                             <span
                                               style={{width: '100px'}}>
-                                              {university.name}
+                                              {user.people_id.first_name + ' ' + user.people_id.last_name}
                                             </span>
                                           </td>
-                                          <td data-field='address'
+                                          <td data-field='username'
                                             className='m-datatable__cell'>
                                             <span
                                               style={{width: '100px'}}>
-                                              {university.address}
+                                              {user.username}
+                                            </span>
+                                          </td>
+                                          <td data-field='email'
+                                            className='m-datatable__cell'>
+                                            <span
+                                              style={{width: '100px'}}>
+                                              {user.people_id.email}
+                                            </span>
+                                          </td>
+                                          <td data-field='university'
+                                            className='m-datatable__cell'>
+                                            <span
+                                              style={{width: '100px'}}>
+                                              {user.university_id.name}
                                             </span>
                                           </td>
                                           <td data-field='sector' className='m-datatable__cell'>
                                             <span style={{width: '100px'}}>
-                                              {university.sector}
-                                            </span>
-                                          </td>
-                                          <td data-field='created_at' className='m-datatable__cell'>
-                                            <span style={{width: '100px'}}>
-                                              {university.created_at}
+                                              {user.created_at}
                                             </span>
                                           </td>
                                           <td data-field='options'
                                             className='m-datatable__cell'>
                                             <span
                                               style={{width: '170px'}}>
-                                              <Link onClick={() => { let universitySelected = university; this.gotoEditUniversity(universitySelected) }} className='btn btn-primary btn-sm' style={{float: 'left', margin: 2, color: 'white'}}>
+                                              <Link onClick={() => { let userSelected = user; this.gotoEditUser(userSelected) }} className='btn btn-primary btn-sm' style={{float: 'left', margin: 2, color: 'white'}}>
                                                 Edit
                                               </Link>
                                               <button className='btn btn-primary btn-sm'
                                                 style={{float: 'left', margin: 2}}
-                                                onClick={() => this.showDialog(university._id)}>
+                                                onClick={() => this.showDialog(user._id)}>
                                                 Delete
                                               </button>
                                             </span>
@@ -304,16 +326,19 @@ class University extends React.Component {
 }
 
 function mapStateToProps (state) {
+  console.log(state)
   return {
-    universities: (state.universityInfo.universities)
+    universities: (state.universityInfo.universities),
+    users: (state.userInfo.users)
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return bindActionCreators({
     getUniversities,
-    deleteUniversity
+    getUsers,
+    deleteUser
   },
     dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(University)
+export default connect(mapStateToProps, mapDispatchToProps)(User)

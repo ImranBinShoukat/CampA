@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-class SuperUserDashboard extends React.Component {
+class OfficeBearerDashboard extends React.Component {
   render() {
     return (
       <div>
@@ -99,7 +99,7 @@ class SuperUserDashboard extends React.Component {
 											<i className="la la-gear"></i>
 										</span>
                     <h3 className="m-portlet__head-text">
-											Universities vs Societies
+											Events vs Registrations
 										</h3>
 									</div>
 								</div>
@@ -125,4 +125,4 @@ function mapDispatchToProps (dispatch) {
   },
     dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(SuperUserDashboard)
+export default connect(mapStateToProps, mapDispatchToProps)(OfficeBearerDashboard)

@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-class SuperUserDashboard extends React.Component {
+class AdministratorDashboard extends React.Component {
   render() {
     return (
       <div>
@@ -19,9 +19,9 @@ class SuperUserDashboard extends React.Component {
                   <div className='m-portlet__body'>
                     <div className='m-widget26'>
                       <div className='m-widget26__number'>
-                        65
+                        2065
                         <small>
-                          Total Universities
+                          Total Users
                         </small>
                       </div>
                     </div>
@@ -38,9 +38,9 @@ class SuperUserDashboard extends React.Component {
                   <div className='m-portlet__body'>
                     <div className='m-widget26'>
                       <div className='m-widget26__number'>
-                        5098
+                        1075
                         <small>
-                          Total Users
+                          Total Students
                         </small>
                       </div>
                     </div>
@@ -57,9 +57,9 @@ class SuperUserDashboard extends React.Component {
                   <div className='m-portlet__body'>
                     <div className='m-widget26'>
                       <div className='m-widget26__number'>
-                        1960
+                        960
                         <small>
-                          Total Societies
+                          Total Faculty
                         </small>
                       </div>
                     </div>
@@ -76,9 +76,9 @@ class SuperUserDashboard extends React.Component {
                   <div className='m-portlet__body'>
                     <div className='m-widget26'>
                       <div className='m-widget26__number'>
-                        1058
+                        58
                         <small>
-                          Total Events
+                          Total Office Bearers
                         </small>
                       </div>
                     </div>
@@ -99,7 +99,7 @@ class SuperUserDashboard extends React.Component {
 											<i className="la la-gear"></i>
 										</span>
                     <h3 className="m-portlet__head-text">
-											Universities vs Societies
+											Societies vs Events
 										</h3>
 									</div>
 								</div>
@@ -125,4 +125,4 @@ function mapDispatchToProps (dispatch) {
   },
     dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(SuperUserDashboard)
+export default connect(mapStateToProps, mapDispatchToProps)(AdministratorDashboard)

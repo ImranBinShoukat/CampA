@@ -44,7 +44,7 @@ exports.addSociety = function (req, res) {
     created_by: req.body.createdBy
   }
 
-  const societyData = new Society(universityPayload)
+  const societyData = new Society(societyPayload)
   societyData.save((err, createdRecord) => {
     if (err) {
       res.status(500).json({

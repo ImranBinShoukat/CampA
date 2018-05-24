@@ -18,7 +18,7 @@ class Sidebar extends React.Component {
           <div id='m_ver_menu' className='m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark' data-menu-vertical='true' data-menu-scrollable='false' data-menu-dropdown-timeout='500' >
             <ul className='m-menu__nav  m-menu__nav--dropdown-submenu-arrow' >
               <li className='m-menu__item  m-menu__item' aria-haspopup='true' >
-                <a className='m-menu__link' >
+                <Link to='/dashboard' className='m-menu__link' >
                   <i className='m-menu__link-icon la la-dashboard' />
                   <span className='m-menu__link-title'>
                     <span className='m-menu__link-wrap'>
@@ -27,7 +27,7 @@ class Sidebar extends React.Component {
                       </span>
                     </span>
                   </span>
-                </a>
+                </Link>
               </li>
               {
                 this.props.userdetails && this.props.userdetails.role === 'super user' &&
@@ -47,7 +47,7 @@ class Sidebar extends React.Component {
               {
                 this.props.userdetails && this.props.userdetails.role === 'super user' &&
                 <li className='m-menu__item  m-menu__item' aria-haspopup='true' >
-                  <a className='m-menu__link' >
+                  <Link to='/users' className='m-menu__link' >
                     <i className='m-menu__link-icon la la-users' />
                     <span className='m-menu__link-title'>
                       <span className='m-menu__link-wrap'>
@@ -56,7 +56,37 @@ class Sidebar extends React.Component {
                         </span>
                       </span>
                     </span>
-                  </a>
+                  </Link>
+                </li>
+              }
+              {
+                this.props.userdetails && this.props.userdetails.role === 'administrator' &&
+                <li className='m-menu__item  m-menu__item' aria-haspopup='true' >
+                  <Link to='/societies' className='m-menu__link' >
+                    <i className='m-menu__link-icon la la-slideshare' />
+                    <span className='m-menu__link-title'>
+                      <span className='m-menu__link-wrap'>
+                        <span className='m-menu__link-text'>
+                          Societies
+                        </span>
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              }
+              {
+                this.props.userdetails && this.props.userdetails.is_office_bearer &&
+                <li className='m-menu__item  m-menu__item' aria-haspopup='true' >
+                  <Link to='/createPost' className='m-menu__link' >
+                    <i className='m-menu__link-icon la la-comment' />
+                    <span className='m-menu__link-title'>
+                      <span className='m-menu__link-wrap'>
+                        <span className='m-menu__link-text'>
+                          Create Post
+                        </span>
+                      </span>
+                    </span>
+                  </Link>
                 </li>
               }
               <li className='m-menu__item  m-menu__item' aria-haspopup='true' >

@@ -7,6 +7,12 @@ import ForgotPassword from './containers/login/forgotPassword';
 import University from './containers/university/university';
 import AddUniversity from './containers/university/adduniversity';
 import EditUniversity from './containers/university/edituniversity';
+import Users from './containers/users/users';
+import AddUser from './containers/users/adduser';
+import EditUser from './containers/users/edituser';
+import Society from './containers/society/society';
+import AddSociety from './containers/society/addSociety';
+import CreatePost from './containers/post/createPost';
 import auth from './utility/auth.service';
 
 function requireAuth (nextState, replace) {
@@ -42,6 +48,12 @@ const routes = (
         <Route path="/universities" component={University} onEnter={requireAuth} />
         <Route path="/addUniversity" component={AddUniversity} onEnter={requireAuth} />
         <Route path="/editUniversity" component={EditUniversity} onEnter={requireAuth} />
+        <Route path="/users" component={Users} onEnter={requireAuth} />
+        <Route path="/addUser" component={AddUser} onEnter={requireAuth} />
+        <Route path="/editUser" component={EditUser} onEnter={requireAuth} />
+        <Route path="/societies" component={Society} onEnter={requireAuth} />
+        <Route path="/addSociety" component={AddSociety} onEnter={requireAuth} />
+        <Route path="/createPost" component={CreatePost} onEnter={requireAuth} />
      </Route>
 );
 

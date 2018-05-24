@@ -10,6 +10,7 @@ const _ = require('lodash')
 const path = require('path')
 const fs = require('fs')
 const crypto = require('crypto')
+const FCM = require('fcm-node')
 
 exports.index = function (req, res) {
   Post.find({society_id: req.params.id})
@@ -27,11 +28,7 @@ exports.index = function (req, res) {
 exports.createPost = function (req, res) {
   let parametersMissing = false
 
-  if (!_.has(req.body, 'societyId')) parametersMissing = true
-  if (!_.has(req.body, 'pageId')) parametersMissing = true
-  if (!_.has(req.body, 'universityId')) parametersMissing = true
   if (!_.has(req.body, 'payload')) parametersMissing = true
-  if (!_.has(req.body, 'eventId')) parametersMissing = true
   if (!_.has(req.body, 'createdBy')) parametersMissing = true
 
   if (parametersMissing) {
@@ -40,11 +37,7 @@ exports.createPost = function (req, res) {
   }
 
   const postPayload = {
-    society_id: req.body.societyId,
-    page_id: req.body.pageId,
-    university_id: req.body.universityId,
     payload: req.body.payload,
-    event_id: req.body.eventId,
     created_by: req.body.createdBy
   }
 
@@ -56,6 +49,22 @@ exports.createPost = function (req, res) {
         description: 'Failed to insert record'
       })
     } else {
+      const serverKey = 'AAAAgPwDjg4:APA91bElsHRVXY0LwQJpzp0HPE8sWkyUaJaoKREIlr4FpcnRengXjze2ZxpKPnxUlikulU_3kUART_jyLVZ8W5Qc30WlWQtkb_MxeSPxnlfZAUfa_hQRIzrfn0JpRmrIggJEPFTfy5uS'
+      var fcm = new FCM(serverKey)
+      let pushData = {
+        to: 'xU2Shdy2l4:APA91bEfRhitq2Lo_8h9H50jvfgSng3rqFM-6CSv62UfQJKF_cBoU_uok88Ncv3kJlg9c_c9JI5vwsFg2M-FSFERkd6cA7-XD-sF5E5x7C8bEBPTd-Muz2XQD2oV2SmTFdy-CBjqcWsi',
+        notification: {
+          title: req.body.payload.title,
+          body: req.body.payload.body
+        }
+      }
+      fcm.send(pushData, (error, response) => {
+        if (error) {
+          console.log('Failed to send the push notification')
+        } else {
+          console.log('Push notification sent successfully!')
+        }
+      })
       res.status(201).json({status: 'success', description: 'Post has been created successfully!'})
     }
   })
